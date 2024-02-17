@@ -1,0 +1,16 @@
+
+<div>
+  <%= image_tag(current_user.get_profile_image(300, 200)) %>
+  <%= @user.name %>
+  <%= @user.self_introduction %>
+  <%= link_to edit_public_user_path do %>
+    <p>編集</p>
+  <% end %>
+
+  <% @posts.each do |post| %>
+    <%= link_to public_post_path(post) do %>
+      <%= image_tag post.get_image %>
+    <% end %>
+    <p>説明：<%= post.sentence %></p>
+  <% end %>
+</div>
