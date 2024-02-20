@@ -1,5 +1,7 @@
 <h1>Posts#new</h1>
 <%= form_with model: @post, url: public_posts_path do |f| %>
+  <h4>投稿名</h4>
+  <%= f.text_field :post_name %>
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
   <h4>説明</h4>

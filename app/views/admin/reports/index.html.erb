@@ -1,0 +1,9 @@
+<% if @reports.blank? %>
+ <h4>報告はありません</h4>
+<% end %>
+
+<% @reports.each do |report| %>
+  <%= report.user_id %>
+  <%= report.post_id %>
+  <%= report.reports %>
+<% end %>

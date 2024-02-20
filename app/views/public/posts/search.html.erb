@@ -1,0 +1,11 @@
+<h2><%= @keyword %> で検索</h2>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <%= post.post_name %>
+        <%= link_to public_post_path(post.id) do %>
+          <%= image_tag post.image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0") if post.image.attached? %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>

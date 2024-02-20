@@ -1,14 +1,5 @@
-<h1>Posts#index</h1>
-<% @post.each do |post| %>
-  <div>
-    <% if @user && @user.avatar? %>
-     <%= image_tag @user.avatar.url %>
-    <% else %>
-     <%= image_tag("no_image.jpg") %>
-    <% end %>
-    <%= link_to public_post_path(post.id) do %>
-      <%= image_tag post.get_image %>
-    <% end %>
-    <p>説明：<%= post.sentence %></p>
-  </div>
+<h1>投稿検索</h1>
+<%= form_with url: search_public_posts_path, local: true, method: :get do |form| %>
+  <%= form.text_field :keyword %>
+  <%= form.submit "検索" %>
 <% end %>

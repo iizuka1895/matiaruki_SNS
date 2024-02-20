@@ -8,6 +8,7 @@
   <% end %>
 
   <% @posts.each do |post| %>
+    <%= post.post_name %>
     <%= link_to public_post_path(post) do %>
       <%= image_tag post.get_image %>
     <% end %>

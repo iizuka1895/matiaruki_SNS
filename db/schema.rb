@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_17_065501) do
+ActiveRecord::Schema.define(version: 2024_02_20_141323) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -54,7 +54,17 @@ ActiveRecord::Schema.define(version: 2024_02_17_065501) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.text "post_name", null: false
     t.text "sentence", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.text "reports"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -64,6 +74,7 @@ ActiveRecord::Schema.define(version: 2024_02_17_065501) do
     t.string "encrypted_password", default: "", null: false
     t.string "name", null: false
     t.string "self_introduction"
+    t.boolean "is_active", default: true
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

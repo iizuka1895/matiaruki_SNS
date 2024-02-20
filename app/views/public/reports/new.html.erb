@@ -1,0 +1,5 @@
+<h4>管理者に報告する</h4>
+  <%= form_with model: [@post, @report], url: public_post_reports_path(@post) do |f| %>
+    <%= f.text_area :reports, rows: '6', placeholder: "報告内容を記載" %><br>
+    <%= f.submit "報告する" %>
+  <% end %>

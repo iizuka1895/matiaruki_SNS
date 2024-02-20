@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
-    redirect_to public_posts_path
+    redirect_to public_user_path(current_user)
   end
 
   def index
@@ -19,9 +19,18 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
   
+  def search
+    if params[:keyword].present?
+      @posts = Post.where('sentence LIKE ?', "%#{params[:keyword]}%")
+      @keyword = params[:keyword]
+    else
+      @posts = Post.all
+    end
+  end
+  
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :image, :sentence)
+    params.require(:post).permit(:user_id, :image, :sentence, :post_name)
   end
 end
