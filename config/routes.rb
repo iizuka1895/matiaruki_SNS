@@ -28,6 +28,7 @@ Rails.application.routes.draw do
        end
        resource :reports, only: [:new, :create]
        get :complete, on: :member
+       resource :favorites, only: [:create, :destroy]
      end
 
    end

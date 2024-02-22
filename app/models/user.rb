@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :reports
+  has_many :favorites, dependent: :destroy
 
   def get_profile_image(width, height)
     unless profile_image.attached?
