@@ -3,6 +3,7 @@ class Admin::ReportsController < ApplicationController
   
   def index
     @reports = Report.order("created_at DESC")
+    @users = User.all
   end
   
 end

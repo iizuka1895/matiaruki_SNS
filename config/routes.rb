@@ -15,7 +15,12 @@ Rails.application.routes.draw do
 # public
    namespace :public do
 
-     resources :users, only: [:index, :show, :edit, :update]
+     resources :users, only: [:index, :show, :edit, :update] do
+         member do
+            get 'check'
+            patch 'withdrawl'
+        end
+     end
 
      resources :posts, only: [:index, :show, :new, :create] do
        collection do
@@ -30,7 +35,11 @@ Rails.application.routes.draw do
 # admin
    namespace :admin do
      resources :reports, only: [:index, :show]
+     resources :users, only: [:index, :show, :edit, :update]
+     resources :posts, only: [:index, :show]
    end
+   
+   
 root 'public/homes#top'
 get 'about' => 'public/homes#about', as: "about"
 end

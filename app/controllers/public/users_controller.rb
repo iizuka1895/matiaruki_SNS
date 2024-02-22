@@ -21,6 +21,17 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
+  
+  def check
+    @user = current_user
+  end
+  
+  def withdrawl
+    current_user.update(is_active: false)
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path
+  end
 
   private
   def user_params

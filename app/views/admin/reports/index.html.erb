@@ -3,7 +3,11 @@
 <% end %>
 
 <% @reports.each do |report| %>
-  <%= report.user_id %>
-  <%= report.post_id %>
+  <%= link_to admin_user_path(report.user_id) do %>
+    <%= report.user_id %>
+  <% end %>
+  <%= link_to admin_post_path(report.post_id) do %>
+    <%= report.post_id %>
+  <% end %>
   <%= report.reports %>
 <% end %>
