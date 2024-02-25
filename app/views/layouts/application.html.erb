@@ -31,6 +31,9 @@
                 <%= link_to "投稿検索", public_posts_path %>
               </li>
               <li>
+                <%= link_to liked_posts_public_user_path(current_user), data: { "turbolinks" => false } do %>いいねした投稿<% end %>
+              </li>
+              <li>
                 <%= link_to "マイページ", public_user_path(current_user) %>
               </li>
               <li>

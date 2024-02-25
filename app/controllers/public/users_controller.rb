@@ -32,6 +32,10 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
   end
+  
+  def liked_posts
+    @liked_posts = Post.liked_posts(current_user, params[:page], 10)
+  end
 
   private
   def user_params

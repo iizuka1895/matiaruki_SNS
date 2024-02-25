@@ -19,6 +19,7 @@ Rails.application.routes.draw do
          member do
             get 'check'
             patch 'withdrawl'
+            get 'liked_posts'
         end
      end
 
