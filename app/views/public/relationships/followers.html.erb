@@ -1,0 +1,13 @@
+<h2>Follower Users</h2>
+<% if @users.exists? %>
+  <% users.each do |user| %>
+    <%= image_tag user.get_profile_image, size: '50x50' %>
+    <%= user.name %>
+    <p>フォロー数:</p> <%= user.followings.count %>
+    <p>フォロワー数:</p> <%= user.followers.count %>
+    <%= render "relationships/btn", user: user, options: { class: "follow-link" } %>
+    <%= link_to "Show", user %>
+  <% end %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

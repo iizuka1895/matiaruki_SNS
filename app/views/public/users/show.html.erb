@@ -3,9 +3,18 @@
   <%= image_tag(current_user.get_profile_image(300, 200)) %>
   <%= @user.name %>
   <%= @user.self_introduction %>
+  <p>follows</p>
+  <%= link_to @user.followings.count, public_user_followings_path(@user) %>
+  <p>followers</p>
+  <%= link_to @user.followers.count,  public_user_followers_path(@user) %>
   <%= link_to edit_public_user_path do %>
     <p>編集</p>
   <% end %>
+  <div>
+    <% if current_user != @user %>
+      <%= render "relationships/btn", user: user, options: { class: ""} %>
+    <% end %>
+  </div>
 
   <% @posts.each do |post| %>
     <%= post.post_name %>

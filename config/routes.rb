@@ -13,15 +13,18 @@ Rails.application.routes.draw do
     }
 
 # public
-   namespace :public do
-
-     resources :users, only: [:index, :show, :edit, :update] do
-         member do
-            get 'check'
-            patch 'withdrawl'
-            get 'liked_posts'
-        end
-     end
+  namespace :public do
+      
+    resources :users, only: [:index, :show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+        get "followings" => "relationships#followings", as: "followings"
+        get "followers" => "relationships#followers", as: "followers"
+      member do
+        get 'check'
+        patch 'withdrawl'
+        get 'liked_posts'
+      end
+    end
 
      resources :posts, only: [:index, :show, :new, :create] do
        collection do
