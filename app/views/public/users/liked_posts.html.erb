@@ -1,6 +1,8 @@
 <h4>いいねした投稿</h4>
 <% @liked_posts.each do |post| %>
-  <%= post.post_name %>
+  <%= link_to public_user_post_path(post) do %>
+    <%= post.post_name %>
+  <% end %>
   <%= image_tag post.get_image %>
   <p>説明：<%= post.sentence %></p>
   <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>

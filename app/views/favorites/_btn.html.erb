@@ -1,9 +1,9 @@
 <% if post.favorited_by?(current_user) %>
-  <%= button_to public_post_favorites_path(@post), method: :delete do %>
+  <%= button_to public_user_post_favorites_path(post_id: @post.id), method: :delete do %>
     <%= post.favorites.count %> いいね
   <% end %>
 <% else %>
-  <%= button_to public_post_favorites_path(@post), method: :post do %>
+  <%= button_to public_user_post_favorites_path(post_id: @post.id), method: :post do %>
     <%= post.favorites.count %> いいね
   <% end %>
 <% end %>

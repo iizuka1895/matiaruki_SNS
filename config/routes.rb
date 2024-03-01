@@ -24,18 +24,18 @@ Rails.application.routes.draw do
         patch 'withdrawl'
         get 'liked_posts'
       end
-    end
-
-     resources :posts, only: [:index, :show, :new, :create] do
+      
+      resources :posts, only: [:index, :show, :new, :create] do
        collection do
          get 'search'
        end
        resource :reports, only: [:new, :create]
        get :complete, on: :member
        resource :favorites, only: [:create, :destroy]
-     end
-
-   end
+       resources :post_comments, only: [:create, :destroy]
+       end
+      end
+    end
 
 # admin
    namespace :admin do

@@ -3,7 +3,7 @@
     <% @posts.each do |post| %>
       <li>
         <%= post.post_name %>
-        <%= link_to public_post_path(post.id) do %>
+        <%= link_to public_user_post_path(id: post.id) do %>
           <%= image_tag post.image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0") if post.image.attached? %>
         <% end %>
       </li>

@@ -22,13 +22,13 @@
           <ul>
             <% if user_signed_in? %>
               <li>
-                <%= link_to "投稿", new_public_post_path %>
+                <%= link_to "投稿", new_public_user_post_path(user_id: current_user.id) %>
               </li>
               <li>
                 <%= button_to "ログアウト", destroy_user_session_path, method: :delete %>
               </li>
               <li>
-                <%= link_to "投稿検索", public_posts_path %>
+                <%= link_to "投稿検索", public_user_posts_path(user_id: current_user.id) %>
               </li>
               <li>
                 <%= link_to liked_posts_public_user_path(current_user), data: { "turbolinks" => false } do %>いいねした投稿<% end %>
