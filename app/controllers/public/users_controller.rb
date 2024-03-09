@@ -3,6 +3,12 @@ class Public::UsersController < ApplicationController
 
   def index
     @user = current_user
+    @posts = Post.order('id DESC').limit(5)
+  end
+  
+  def index_follow
+    @user = current_user
+    @posts = Post.order("created_at DESC").where(user_id: [*current_user.following_ids]).limit(5)
   end
 
   def show

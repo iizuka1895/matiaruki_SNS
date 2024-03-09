@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
 # public
   namespace :public do
-      
+
     resources :users, only: [:index, :show, :edit, :update] do
       collection do
         get 'search'
@@ -26,8 +26,9 @@ Rails.application.routes.draw do
         get 'check'
         patch 'withdrawl'
         get 'liked_posts'
+        get 'index_follow'
       end
-      
+
       resources :posts, only: [:index, :show, :new, :create, :destroy] do
        collection do
          get 'search'
@@ -46,8 +47,8 @@ Rails.application.routes.draw do
      resources :users, only: [:index, :show, :edit, :update]
      resources :posts, only: [:index, :show]
    end
-   
-   
+
+
 root 'public/homes#top'
 get 'about' => 'public/homes#about', as: "about"
 end
