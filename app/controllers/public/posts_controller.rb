@@ -3,11 +3,18 @@ class Public::PostsController < ApplicationController
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
+    redirect_to public_user_path(current_user)
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.user_id = current_user.id
+    @post.destroy
     redirect_to public_user_path(current_user)
   end
 
@@ -17,10 +24,10 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @user = User.find(@post.user_id)
+    @user = @post.user
     @post_comment = PostComment.new
   end
-  
+
   def search
     if params[:keyword].present?
       @posts = Post.where('sentence LIKE ?', "%#{params[:keyword]}%")
@@ -29,10 +36,14 @@ class Public::PostsController < ApplicationController
       @posts = Post.all
     end
   end
-  
+
   private
 
   def post_params
     params.require(:post).permit(:user_id, :image, :sentence, :post_name)
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :self_introduction, :image, :email, :profile_image)
   end
 end

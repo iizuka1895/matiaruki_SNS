@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   namespace :public do
       
     resources :users, only: [:index, :show, :edit, :update] do
+      collection do
+        get 'search'
+      end
       resource :relationships, only: [:create, :destroy]
         get "followings" => "relationships#followings", as: "followings"
         get "followers" => "relationships#followers", as: "followers"
@@ -25,7 +28,7 @@ Rails.application.routes.draw do
         get 'liked_posts'
       end
       
-      resources :posts, only: [:index, :show, :new, :create] do
+      resources :posts, only: [:index, :show, :new, :create, :destroy] do
        collection do
          get 'search'
        end

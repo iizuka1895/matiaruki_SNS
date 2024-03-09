@@ -6,8 +6,8 @@ class Public::UsersController < ApplicationController
   end
 
   def show
-    @posts = current_user.posts
-    @user = current_user
+    @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def edit
@@ -20,6 +20,15 @@ class Public::UsersController < ApplicationController
       redirect_to public_user_path(current_user)
     else
       render :edit
+    end
+  end
+  
+  def search
+    if params[:keyword].present?
+      @users = User.where('name LIKE ?', "%#{params[:keyword]}%")
+      @keyword = params[:keyword]
+    else
+      @users = User.all
     end
   end
   

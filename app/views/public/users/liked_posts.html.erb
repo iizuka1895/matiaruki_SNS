@@ -3,9 +3,10 @@
   <%= link_to public_user_post_path(post) do %>
     <%= post.post_name %>
   <% end %>
-  <%= image_tag post.get_image %>
+  <%= image_tag post.get_image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0") %>
   <p>説明：<%= post.sentence %></p>
   <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+  <p><%= link_to "#{post.post_comments.count} 件のコメント", public_user_post_path(post.id) %></p>
 <% end %>
 <div>
   <%= paginate @liked_posts %>

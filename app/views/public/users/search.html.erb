@@ -1,0 +1,11 @@
+<h2><%= @keyword %> で検索</h2>
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <%= user.name %>
+        <%= link_to public_user_path(id: user.id) do %>
+          <%= image_tag(user.get_profile_image(300, 200)) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>

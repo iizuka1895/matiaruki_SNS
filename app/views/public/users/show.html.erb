@@ -1,25 +1,36 @@
 
 <div>
-  <%= image_tag(current_user.get_profile_image(300, 200)) %>
+  <%= image_tag(@user.get_profile_image(300, 200)) %>
   <%= @user.name %>
   <%= @user.self_introduction %>
+  
   <p>follows</p>
   <%= link_to @user.followings.count, public_user_followings_path(@user) %>
   <p>followers</p>
   <%= link_to @user.followers.count,  public_user_followers_path(@user) %>
-  <%= link_to edit_public_user_path do %>
-    <p>編集</p>
+  <% if current_user.id == @user.id %>
+    <%= link_to edit_public_user_path do %>
+      <p>編集</p>
+    <% end %>
   <% end %>
+  <% if current_user.id == @user.id %>
+    <p>ユーザー検索</p>
+    <%= form_with url: search_public_users_path, local: true, method: :get do |form| %>
+      <%= form.text_field :keyword %>
+      <%= form.submit "検索" %>
+  　<% end %>
+  <% end %>
+
   <div>
     <% if current_user != @user %>
-      <%= render "relationships/btn", user: user, options: { class: ""} %>
+      <%= render "public/relationships/btn", user: @user, options: { class: ""} %>
     <% end %>
   </div>
 
   <% @posts.each do |post| %>
     <%= post.post_name %>
-    <%= link_to public_user_post_path(post) do %>
-      <%= image_tag post.get_image %>
+    <%= link_to public_user_post_path(@user.id, post.id) do %>
+      <%= image_tag post.get_image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0") %>
     <% end %>
     <p>説明：<%= post.sentence %></p>
   <% end %>
