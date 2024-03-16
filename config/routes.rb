@@ -29,7 +29,7 @@ Rails.application.routes.draw do
         get 'index_follow'
       end
 
-      resources :posts, only: [:index, :show, :new, :create, :destroy] do
+      resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
        collection do
          get 'search'
        end

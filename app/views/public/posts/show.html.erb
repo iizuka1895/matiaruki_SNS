@@ -5,14 +5,15 @@
   <%= image_tag @post.get_image.variant(gravity: :center, resize:"640x640^", crop:"640x640+0+0") %>
   <p>説明：<%= @post.sentence %></p>
   <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+
   <% if @user != current_user %>
     <%= render "public/relationships/btn", user: @user, options: { class: "follow-link" } %>
-  <% end %>
-  <% if @user != current_user %>
     <%= render "favorites/btn", post: @post %>
     <%= link_to "不適切な投稿として報告する" ,new_public_user_post_reports_path(post_id: @post.id) %>
   <% end %>
+
   <% if @user == current_user %>
+    <%= link_to "編集", edit_public_user_post_path(@post) %>
     <%= button_to "削除", public_user_post_path(@post), method: :delete %>
   <% end %>
 </div>

@@ -4,6 +4,10 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
+    post:
+      status:
+         public: "公開"
+         non_public: "非公開"
   activerecord:
     errors:
       messages:
@@ -21,7 +25,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -47,7 +51,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月

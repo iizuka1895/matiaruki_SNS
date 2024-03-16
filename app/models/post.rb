@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  
+  enum status: { public: 0, non_public: 1 }, _prefix: true
 
   def get_image
   unless image.attached?
