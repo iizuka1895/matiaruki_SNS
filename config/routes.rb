@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
 # public
   namespace :public do
+    
+    resources :notifications, only: [:index]
 
     resources :users, only: [:index, :show, :edit, :update] do
       collection do
